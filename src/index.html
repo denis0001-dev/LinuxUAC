@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+
+        <title>Settings</title>
+
+        <link rel="stylesheet" href="resources/fonts/stylesheet.css">
+        <link rel="stylesheet" href="style.css">
+
+        <meta lang="en-US">
+        <script>exports = {}</script>
+        <script src="script.js"></script>
+    </head>
+    <body class="notloaded">
+        <div id="overlay"></div>
+        <div id="main">
+            <div id="frame">
+                <p id="label">User Account Control</p>
+                <div id="close_button"></div>
+            </div>
+            <div id="title">
+                Do you want to allow this app to make changes to your device?
+            </div>
+            <div id="app">
+                <div class="icon"></div>
+                <div class="name"></div>
+            </div>
+            <div>
+                Verified publisher: GNU Linux<br/>
+                File origin: Hard drive on this computer
+            </div>
+            <div id="adm">
+                <div>To continue, enter an admin username and password.</div>
+                <div id="admInput">
+                    <div class="profilePic"></div>
+                    <div class="data">
+                        <div class="user"></div>
+                        <input type="password" id="admPassword" placeholder="Password" />
+                        <div class="computer"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="invalid" style="display: none;">Invalid username or password.</div>
+            <div id="buttons">
+                <button id="yes">Yes</button>
+                <button id="no">No</button>
+            </div>
+        </div>
+    </body>
+</html>

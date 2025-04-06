@@ -1,0 +1,222 @@
+:root {
+    --uac-color: #76b9ed;
+    --uac-bg: #e6e6e6;
+}
+
+html, body {
+    height: 100vh;
+    position: relative;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+    -webkit-app-region: drag;
+    margin: 0;
+    flex-direction: column;
+    -webkit-user-select: none;
+    user-select: none;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body.notloaded {
+    background: none !important;
+    opacity: 0;
+}
+
+#main {
+    width: 430px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--uac-bg);
+    z-index: 100;
+
+    > div:not(#frame, #title) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #frame {
+        background-color: var(--uac-color);
+        height: 36px;
+        margin: 0;
+        -webkit-app-region: drag;
+        position: relative;
+        width: 100%;
+
+        #label {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            line-height: 36px;
+            font-size: 14px;
+            margin: 0 0 0 20px;
+            top: 0;
+        }
+
+        #close_button {
+            background-image: url('resources/close.png');
+            background-size: cover;
+            width: 50px;
+            height: 36px;
+            transition: background-image 0.1s ease-in-out;
+            position: absolute;
+            top: 0;
+            right: 0;
+            -webkit-app-region: no-drag;
+        }
+        #close_button:hover {
+            background-image: url('resources/close_hover.png');
+        }
+
+        #maximize_button {
+            background-image: url('resources/maximize.png');
+            background-size: cover;
+            width: 50px;
+            height: 36px;
+            transition: background-image 0.1s ease-in-out;
+            position: absolute;
+            top: 0;
+            right: 50px;
+            -webkit-app-region: no-drag;
+        }
+        #maximize_button:hover {
+            background-image: url('resources/maximize_hover.png');
+        }
+        #restore_button {
+            background-image: url('resources/restore.png');
+            background-size: cover;
+            width: 50px;
+            height: 36px;
+            transition: background-image 0.1s ease-in-out;
+            position: absolute;
+            top: 0;
+            right: 50px;
+            -webkit-app-region: no-drag;
+            visibility: hidden;
+        }
+        #restore_button:hover {
+            background-image: url('resources/restore_hover.png');
+        }
+
+        #minimize_button {
+            background-image: url('resources/minimize.png');
+            background-size: cover;
+            width: 50px;
+            height: 36px;
+            transition: background-image 0.1s ease-in-out;
+            position: absolute;
+            top: 0;
+            right: 100px;
+            -webkit-app-region: no-drag;
+        }
+        #minimize_button:hover {
+            background-image: url('resources/minimize_hover.png');
+        }
+    }
+
+    #title {
+        background-color: var(--uac-color);
+        padding: 0 20px 10px 20px;
+        font-size: 20px;
+    }
+
+    #app {
+        padding: 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            background-size: cover;
+            background-position: center;
+            background-image: url(resources/app.png);
+        }
+
+        .name {
+            font-size: 18px;
+        }
+    }
+
+    #adm {
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        #admInput {
+            padding: 10px 0 10px 0;
+            display: flex;
+            gap: 10px;
+
+            .profilePic {
+                border-radius: 50%;
+                background-image: url(resources/user.png);
+                background-size: cover;
+                width: 50px;
+                height: 50px;
+            }
+
+            .data {
+                display: flex;
+                flex-direction: column;
+
+                #admPassword {
+                    margin: 10px 0 10px 0;
+                    border: 2px solid rgb(129, 129, 129);
+                    outline: none;
+                    padding: 7px;
+                    font-family: 'Segoe UI', sans-serif;
+                    font-size: 14px;
+                    width: 250px;
+                }
+
+                #admPassword:focus, #admPassword:focus-visible, #admPassword:focus-within {
+                    border: 2px solid rgb(0, 121, 255)
+                }
+            }
+        }
+    }
+
+    #invalid {
+        color: rgb(255, 50, 50);
+        padding-bottom: 20px;
+    }
+
+    #buttons {
+        padding-bottom: 20px;
+        display: flex;
+        gap: 10px;
+
+        button {
+            flex-grow: 1;
+            height: 30px;
+            border: none;
+            background-color: rgb(177, 177, 177);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        button:hover {
+            background-color: rgb(159, 159, 159);
+        }
+    }
+}
+
+#overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
