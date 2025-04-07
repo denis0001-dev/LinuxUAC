@@ -21,23 +21,13 @@ var utils;
         });
     }
     utils.shell = shell;
-    /*export function escapeShell(str: string): string {
-        return str
-            .replace(/`/g, "\\`")
-            .replace(/"/g, "\\\"")
-            .replace(/'/g, "\\'")
-    }*/
-    async function close(win) {
+    async function close(win, code = 1) {
         document.body.classList.add("notloaded");
         await delay(500);
+        win.mainProcess.exitCode = code;
         win.close();
     }
     utils.close = close;
-    /*export async function hide(win: ExBrowserWindow) {
-        document.body.classList.add("notloaded");
-        await delay(500);
-        win.hide();
-    }*/
 })(utils || (utils = {}));
 var uac;
 (function (uac) {
@@ -70,33 +60,12 @@ var uac;
         async function confirm() {
             shell(`echo "${password_inp.value}" | su -c true "$USER"`).then(async () => {
                 invalid_password.style.display = "none";
-                console.log("writing to stdout");
                 process.stdout.write(`${password_inp.value}\n`);
-                console.log("sudo -K");
                 await delay(500);
                 await shell("sudo -K");
-                console.log("exit");
-                close(win);
+                win.mainProcess.exitCode = 0;
+                close(win, 0);
                 main_1.app.quit();
-                return;
-                /*await hide(win);
-                const proc = spawn(
-                    "bash",
-                    [
-                        "-c",
-                        `echo "${password_inp.value}" | env "${win.env}" sudo -S bash -c "${escapeShell(win.app)}"`
-                    ],
-                    {
-                        stdio: 'inherit'
-                    }
-                );
-                proc.on("close", async (code) => {
-                    await delay(500);
-                    await shell("sudo -K");
-                    process.exitCode = code || 0;
-                    win.close();
-                    app.quit();
-                });*/
             }, () => {
                 invalid_password.style.display = "block";
             });

@@ -4,13 +4,17 @@ pkcommand=$(which pkexec)
 
 mv "$pkcommand" "$pkcommand.bak"
 
-cat << "EOF" > "$pkcommand"
+cat << "FEOF" > "$pkcommand"
 #!/bin/bash
-echo "#!/bin/bash" > /tmp/uac_askpass.sh
-echo "uac \"--app=$@\"" >> /tmp/uac_askpass.sh
+cat << SEOF > /tmp/uac_askpass.sh
+\#!/bin/bash
+command=$(echo "$@" | sed -E "s/^$/\/bin\/bash/gm;t")
+uac "--app=\$command"
+SEOF
 chmod +x /tmp/uac_askpass.sh
 SUDO_ASKPASS=/tmp/uac_askpass.sh sudo -A $@
+code=$?
 rm /tmp/uac_askpass.sh
-EOF
-
+exit $code
+FEOF
 chmod +x "$pkcommand"

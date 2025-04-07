@@ -29,6 +29,7 @@ const createWindow = () => {
         }
     });
     win.argv = process.argv;
+    win.mainProcess = process;
     (0, child_process_1.exec)("env | xargs", (err, stdout) => {
         if (!err) {
             win.env = stdout.toString();

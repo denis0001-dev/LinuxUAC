@@ -30,7 +30,8 @@ const createWindow = () => {
             (win as any).app = arg.replace("--app=", "");
         }
     });
-    (win as any).argv = process.argv
+    (win as any).argv = process.argv;
+    (win as any).mainProcess = process;
     exec("env | xargs", (err, stdout) => {
         if (!err) {
             (win as any).env = stdout.toString();

@@ -1,5 +1,6 @@
 import {exec, /*spawn*/} from 'child_process';
 import {app, BrowserWindow} from "electron/main";
+import Process = NodeJS.Process;
 
 namespace utils {
     export function delay(ms: number): Promise<void> {
@@ -18,30 +19,19 @@ namespace utils {
         });
     }
 
-    /*export function escapeShell(str: string): string {
-        return str
-            .replace(/`/g, "\\`")
-            .replace(/"/g, "\\\"")
-            .replace(/'/g, "\\'")
-    }*/
-
-    export async function close(win: ExBrowserWindow) {
+    export async function close(win: ExBrowserWindow, code: number = 1) {
         document.body.classList.add("notloaded");
         await delay(500);
+        win.mainProcess.exitCode = code;
         win.close();
     }
-
-    /*export async function hide(win: ExBrowserWindow) {
-        document.body.classList.add("notloaded");
-        await delay(500);
-        win.hide();
-    }*/
 }
 
 interface ExBrowserWindow extends BrowserWindow {
     app: string;
     env: string;
     argv: string[];
+    mainProcess: Process;
 }
 
 namespace uac {
@@ -83,33 +73,12 @@ namespace uac {
             ).then(
                 async () => {
                     invalid_password.style.display = "none";
-                    console.log("writing to stdout");
                     process.stdout.write(`${password_inp.value}\n`);
-                    console.log("sudo -K");
                     await delay(500);
                     await shell("sudo -K");
-                    console.log("exit");
-                    close(win);
+                    win.mainProcess.exitCode = 0;
+                    close(win, 0);
                     app.quit();
-                    return
-                    /*await hide(win);
-                    const proc = spawn(
-                        "bash",
-                        [
-                            "-c",
-                            `echo "${password_inp.value}" | env "${win.env}" sudo -S bash -c "${escapeShell(win.app)}"`
-                        ],
-                        {
-                            stdio: 'inherit'
-                        }
-                    );
-                    proc.on("close", async (code) => {
-                        await delay(500);
-                        await shell("sudo -K");
-                        process.exitCode = code || 0;
-                        win.close();
-                        app.quit();
-                    });*/
                 },
                 () => {
                     invalid_password.style.display = "block";
