@@ -1,6 +1,6 @@
 {
   "name": "uac",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Windows UAC ported to Linux",
   "main": "main.js",
   "scripts": {
