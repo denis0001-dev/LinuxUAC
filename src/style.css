@@ -78,51 +78,6 @@ body.notloaded {
         #close_button:hover {
             background-image: url('resources/close_hover.png');
         }
-
-        #maximize_button {
-            background-image: url('resources/maximize.png');
-            background-size: cover;
-            width: 50px;
-            height: 36px;
-            transition: background-image 0.1s ease-in-out;
-            position: absolute;
-            top: 0;
-            right: 50px;
-            -webkit-app-region: no-drag;
-        }
-        #maximize_button:hover {
-            background-image: url('resources/maximize_hover.png');
-        }
-        #restore_button {
-            background-image: url('resources/restore.png');
-            background-size: cover;
-            width: 50px;
-            height: 36px;
-            transition: background-image 0.1s ease-in-out;
-            position: absolute;
-            top: 0;
-            right: 50px;
-            -webkit-app-region: no-drag;
-            visibility: hidden;
-        }
-        #restore_button:hover {
-            background-image: url('resources/restore_hover.png');
-        }
-
-        #minimize_button {
-            background-image: url('resources/minimize.png');
-            background-size: cover;
-            width: 50px;
-            height: 36px;
-            transition: background-image 0.1s ease-in-out;
-            position: absolute;
-            top: 0;
-            right: 100px;
-            -webkit-app-region: no-drag;
-        }
-        #minimize_button:hover {
-            background-image: url('resources/minimize_hover.png');
-        }
     }
 
     #title {

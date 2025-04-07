@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+// noinspection ES6UnusedImports
+require("electron");
 const main_1 = require("electron/main");
-const path = require("node:path");
 const child_process_1 = require("child_process");
 require('@electron/remote/main').initialize();
 const createWindow = () => {
@@ -13,7 +14,6 @@ const createWindow = () => {
         show: false,
         transparent: true,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
             contextIsolation: false,
             nodeIntegration: true,
             webviewTag: true,

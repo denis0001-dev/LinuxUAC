@@ -1,7 +1,6 @@
 // noinspection ES6UnusedImports
-import * as electron from 'electron';
+import 'electron';
 import {app, BrowserWindow, ipcMain} from 'electron/main';
-import path = require('node:path');
 import {exec} from "child_process";
 
 require('@electron/remote/main').initialize();
@@ -15,7 +14,6 @@ const createWindow = () => {
         show: false,
         transparent: true,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
             contextIsolation: false,
             nodeIntegration: true,
             webviewTag: true,
