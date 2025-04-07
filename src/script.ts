@@ -79,7 +79,7 @@ namespace uac {
 
         async function confirm() {
             shell(
-                `echo "${password_inp.value}" | LANG=en_US sudo -S bash -c "exit 0"`
+                `echo "${password_inp.value}" | su -c true "$USER"`
             ).then(
                 async () => {
                     invalid_password.style.display = "none";

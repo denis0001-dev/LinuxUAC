@@ -68,7 +68,7 @@ var uac;
         const user = await shell("echo $USER");
         const hostname = await shell("hostname");
         async function confirm() {
-            shell(`echo "${password_inp.value}" | LANG=en_US sudo -S bash -c "exit 0"`).then(async () => {
+            shell(`echo "${password_inp.value}" | su -c true "$USER"`).then(async () => {
                 invalid_password.style.display = "none";
                 console.log("writing to stdout");
                 process.stdout.write(`${password_inp.value}\n`);
